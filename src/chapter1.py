@@ -47,3 +47,11 @@ def binary_search_iterative(list, item):
             low = mid + 1
 
     return None
+
+
+# Exercise 1.1 - sorted list of 128 names, max number of steps = log2(128) = 7
+# Exercise 1.2 - double list of 128 names, means it will only take one more step = 8
+# Exercise 1.3 - O(log n)
+# Exercise 1.4 - O(n)
+# Exercise 1.5 - O(n)
+# Exercise 1.6 - O(n)
