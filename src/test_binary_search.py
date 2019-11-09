@@ -1,5 +1,6 @@
 import pytest
-from src.chapter1 import binary_search
+from math import log2
+from src.chapter1 import binary_search, binary_search_iterative
 
 
 def test_binary_search_succesful():
@@ -14,7 +15,7 @@ def test_binary_search_unsuccesful():
     sorted_list = [1, 2, 3, 4]
     item = 0
     assert binary_search(sorted_list, item) == None
-    assert binary_search.calls == 2
+    assert binary_search.calls == log2(len(sorted_list))
 
 
 def test_binary_search_unsuccesful_single_element():
@@ -23,3 +24,10 @@ def test_binary_search_unsuccesful_single_element():
     item = 100
     assert binary_search(sorted_list, item) == None
     assert binary_search.calls == 1
+
+
+def test_binary_search_iterative():
+    sorted_list = [1, 2, 3, 4, 5, 6, 7, 8]
+    item = 1
+
+    assert binary_search_iterative(sorted_list, item) == 1
