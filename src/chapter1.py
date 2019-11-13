@@ -9,26 +9,50 @@ def count(f):
 
 
 @count
-def binary_search(sorted_list, item):
-    """
-    Find the mid_point index and corresponding item at mid_point index
-    if mid_point == item 🎉
-    otherwise if list only has that one element return None
-    if list has more than 1 element and mid_point item > item return the first half of list
-    otherwise return latter half
+def binary_search(sorted_list, item, start=0, end=None):
+    if end is None:
+        end = len(sorted_list) - 1
 
-    """
-    mid_point_index = (len(sorted_list) - 1) // 2
-    mid_point = sorted_list[(len(sorted_list) - 1) // 2]
+    mid = (start + end) // 2
+    guess = sorted_list[mid]
 
-    if mid_point == item:
-        return mid_point
-    elif mid_point_index == 0:
+    if guess == item:
+        return item
+    elif mid == 0:
         return None
-    elif mid_point > item:
-        return binary_search(sorted_list[0:mid_point_index], item)
+    elif guess > item:
+        return binary_search(sorted_list, item, start, mid - 1)
     else:
-        return binary_search(sorted_list[mid_point_index:-1], item)
+        return binary_search(sorted_list, item, mid + 1, end)
+
+
+"""
+Problem with the below version is that the slice operator is apparently O(k),
+making our binary search function not O(log n).
+Way to solve this is to pass the starting and ending index with every recursive call.
+
+"""
+# @count
+# def binary_search(sorted_list, item):
+#     """
+#     Find the mid_point index and corresponding item at mid_point index
+#     if mid_point == item 🎉
+#     otherwise if list only has that one element return None
+#     if list has more than 1 element and mid_point item > item return the first half of list
+#     otherwise return latter half
+
+#     """
+#     mid_point_index = (len(sorted_list) - 1) // 2
+#     mid_point = sorted_list[(len(sorted_list) - 1) // 2]
+
+#     if mid_point == item:
+#         return mid_point
+#     elif mid_point_index == 0:
+#         return None
+#     elif mid_point > item:
+#         return binary_search(sorted_list[0:mid_point_index], item)
+#     else:
+#         return binary_search(sorted_list[mid_point_index:-1], item)
 
 
 def binary_search_iterative(list, item):
