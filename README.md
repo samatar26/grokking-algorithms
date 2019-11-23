@@ -94,3 +94,15 @@ Whereas with an array you need shift all the rest of the elements down a space i
 Again linked lists are better as you just need to change what the previous element pointed to. With arrays everything needs to be moved up.
 Unlike insertions, deletions will always work, because insertions can fail if there's no more space left in memory,
 but you can always delete!
+
+## Selection sort
+
+Suppose you want to sort a list from biggest to smallest. One way of doing this is to go through the enitre list,
+find the biggest item and push it into a new list. And keep doing this until there are no more items in the original list.
+This algorithm is called selection sort and it's runtime is O(n^2), the reason being is that to find the biggest item,
+we'll have to perform n operations for a list of length n. And we need to do this n times, hence O(n \* n) === (On^2).
+
+What is interesting is that you may think that we're checking fewer elements after each iteration, since the list decreases in size.
+On average we check a list that has 1/2 \* n elements, constants like 1/2 are ignored in Big O notation. (More in chapter 4)
+
+Selection sort's also not very fast, Quicksort is faster and has a runtime of O(nlogn)
