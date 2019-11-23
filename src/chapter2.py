@@ -32,19 +32,20 @@
 
 def find_smallest(arr):
     smallest = arr[0]
-    for item in arr:
-        if item < smallest:
-            smallest = item
+    smallest_index = 0
+    for i in range(1, len(arr)):
+        if arr[i] < smallest:
+            smallest = arr[i]
+            smallest_index = i
 
-    return smallest
+    return smallest_index
 
 
 def selection_sort_smallest_to_biggest(arr):
     sorted_arr = []
 
     for i in range(len(arr)):
-        smallest = find_smallest(arr)
-        sorted_arr.append(smallest)
-        arr.remove(smallest)
+        smallest_index = find_smallest(arr)
+        sorted_arr.append(arr.pop(smallest_index))
 
     return sorted_arr
