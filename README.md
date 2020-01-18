@@ -106,3 +106,42 @@ What is interesting is that you may think that we're checking fewer elements aft
 On average we check a list that has 1/2 \* n elements, constants like 1/2 are ignored in Big O notation. (More in chapter 4)
 
 Selection sort's also not very fast, Quicksort is faster and has a runtime of O(nlogn)
+
+# Chapter 3
+
+## Recursion
+
+Leigh Caldwell on Stack Overflow: “Loops may achieve a performance gain for
+your program. Recursion may achieve a performance gain for your
+programmer. Choose which is more important in your situation!”
+
+Recursion is when a function calls itself.
+
+Every recursive function has got two parts: _The base case_ and the _recursive cave_. The recursive case
+is when the function calls itself, the base case is the exit condition/when the function stops calling itself and prevents the function
+of going into an infinite loop.
+
+## Stack
+
+A stack is a structure on which you can only perform two operations: `push` an item on to the stack and `pop` an item off the stack.
+Note - All function calls go onto the `call stack`. Suppose we have a function greet: 
+
+```python
+def greet(name):
+    # do some stuff
+    greet2(name)
+    # do some other stuff
+    bye()
+```
+
+When you call the greet funcion, your computer allocates a box of memory for the function call and saves the values for all the variables inside of the function call, 
+i.e. arguments to the function and variables within the body of the function((!)double check if the bit after i.e. is true).
+Then we call `greet2` and since the computer uses a stack, the second box is added on top of the first one (greet). When we're done with `greet2`,
+it gets popped off the call stack. 
+
+Note - When `greet2` was called, the greet function was partially completed, it was in a partially completed state. And therefore all variables for that function 
+are still stored in memory. ((!) - Closures?) It also looks like the stack is used to save variables for functions in memory.
+
+Using a stack is convenient, because you don't have to keep track of the values, the stack does it four you. The call stack can get very large however which takes up a lot of memory. There are two options to fixing this: 
+- Use a loop instead
+- Tail recursion 
